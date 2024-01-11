@@ -1,4 +1,5 @@
 import process
+import manager
 
 
 def main():
@@ -15,6 +16,22 @@ def main():
     aprocobj.addresource(1,3)
 
     print(aprocobj)
+
+    Themanager = manager.Manager()
+
+    Themanager.init()
+    print(Themanager)
+
+    Themanager.create(1)
+    Themanager.create(1)
+    Themanager.create(2)
+    # Themanager.create(1)
+
+    
+
+    print(Themanager)
+
+    Themanager.scheduler()
 
 
 if __name__ == "__main__":

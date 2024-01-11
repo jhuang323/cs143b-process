@@ -2,15 +2,6 @@
 
 
 class Process:
-    def __init__(self) -> None:
-        #init function for the default process 0
-        #0 ready 1 running 2 blocked
-        self.state = 0
-        self.parent = None
-        self.children = list()
-        self.resource = [0] * 4
-        self.priority = 0
-
     def __init__(self,aparent: int, apriority: int):
         #0 ready 1 running 2 blocked
         self.state = 0
@@ -33,6 +24,10 @@ class Process:
 
     def removeresource(self,resid: int,resamt: int):
         self.resource[resid] -= resamt 
+
+
+    def setstate(self,astate:int):
+        self.state = astate
 
 
     def __repr__(self) -> str:
