@@ -7,7 +7,7 @@ from collections import deque
 
 #This is the process manager which is responsible for all proc
 
-MAXPROCESSNUM = 4
+MAXPROCESSNUM = 7
 
 class Manager:
     def __init__(self) -> None:
@@ -41,6 +41,7 @@ class Manager:
         print("Init current process 0")
 
     def scheduler(self):
+        #returns the proc index that is scheduled to run
         #need to check all ready list to get highest process
 
         HighestProcessIndex = -1
@@ -59,6 +60,23 @@ class Manager:
 
         print(f"highest process: {HighestProcessIndex}" )
 
+        #check if it is not the same
+        if HighestProcessIndex != self.currentprocessindex:
+            #perf context switch
+            print("perf context switch")
+
+            #set to ready
+            self.PCB[self.currentprocessindex].setstate(0)
+
+            #change target to running
+            self.PCB[HighestProcessIndex].setstate(1)
+
+            self.currentprocessindex = HighestProcessIndex
+
+        #return the highestind
+            print(f"highest priority ind: {HighestProcessIndex}")
+        return HighestProcessIndex
+
 
     def create(self, priorval: int):
 
@@ -75,6 +93,9 @@ class Manager:
 
         self.PCB[firstEmptySpotindx] = TheNewProc
 
+        #update current process children
+        self.PCB[self.currentprocessindex].addchild(firstEmptySpotindx)
+
         #enter into ready list
 
         match priorval:
@@ -87,11 +108,14 @@ class Manager:
             case _:
                 print("error invalid proior")
 
+        #call scheduler
+        self.scheduler()
+
 
 
 
     def __repr__(self) -> str:
-        theRetStr = "Manager: \nPCB\n"
+        theRetStr = f"Manager: {self.currentprocessindex} \nPCB\n"
 
         for anum,apcbobj in enumerate(self.PCB):
             theRetStr += str(anum) + str(apcbobj) + "\n"

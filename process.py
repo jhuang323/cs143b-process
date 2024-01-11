@@ -10,6 +10,9 @@ class Process:
         self.resource = [0] * 4
         self.priority = apriority
 
+    def setstate(self,agivstate:int):
+        self.state = agivstate
+
 
     #need add and remove children
     def addchild(self,achild: int):

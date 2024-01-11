@@ -23,15 +23,15 @@ def main():
     print(Themanager)
 
     Themanager.create(1)
+    Themanager.create(2)
     Themanager.create(1)
     Themanager.create(2)
-    # Themanager.create(1)
 
     
 
     print(Themanager)
 
-    Themanager.scheduler()
+    # Themanager.scheduler()
 
 
 if __name__ == "__main__":
