@@ -164,17 +164,18 @@ class Manager:
         print("timeout")
 
 
-    def release(self,rind: int):
+    def release(self,rind: int,kamt: int):
         #error check if rind exist, if current proc actually hold resource
 
         CurProcess = self.PCB[self.currentprocessindex]
 
-        if CurProcess.checkholdingresource(rind) is not True:
+        #need to modify
+        if CurProcess.checkholdingresource(rind,kamt) is not True:
             raise "Error cannot release not hold resource"
         
-        tempStoreresReleased = CurProcess.removeresource(rind)
+        CurProcess.removeresource(rind,kamt)
 
-        ThetuplesReady = self.RCB[rind].processrelease(tempStoreresReleased)
+        ThetuplesReady = self.RCB[rind].processrelease(kamt)
 
         print(f"the tups ready {ThetuplesReady}")
 

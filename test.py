@@ -51,9 +51,9 @@ def main():
 
     Themanager.request(2,1)
 
-    Themanager.create(2)
+    # Themanager.create(2)
 
-    Themanager.request(2,1)
+    # Themanager.request(2,1)
     # Themanager.request(2,1)
 
     Themanager.timeout()
@@ -62,7 +62,7 @@ def main():
     # Themanager.request(2,1)
 
     #test release
-    Themanager.release(2)
+    Themanager.release(2,0)
 
     
 

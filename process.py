@@ -30,15 +30,15 @@ class Process:
     def addresource(self,resid: int,resamt: int):
         self.resource[resid] += resamt 
 
-    def checkholdingresource(self,resid:int) -> bool:
-        if self.resource[resid] > 0:
+    def checkholdingresource(self,resid:int,relamt) -> bool:
+        if self.resource[resid] >= relamt:
             return True
         return False
 
-    def removeresource(self,resid: int) -> int:
-        tempresourcerel = self.resource[resid]
-        self.resource[resid] = 0 
-        return tempresourcerel
+    def removeresource(self,resid: int,relamt: int):
+        
+        self.resource[resid] -= relamt 
+        
 
 
     def setstate(self,astate:int):

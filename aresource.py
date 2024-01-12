@@ -10,7 +10,7 @@ class Resource:
     
 
     # add to wait list
-    def processrequest(self,aprocindex: int, reqamt: int) -> bool:
+    def processrequest(self,aresrceindex: int, reqamt: int) -> bool:
         #error checks 
 
         if self.state >= reqamt:
@@ -19,7 +19,7 @@ class Resource:
             
         else:
             #add to wait list
-            self.waitlist.append((aprocindex,reqamt))
+            self.waitlist.append((aresrceindex,reqamt))
 
         return False
 
