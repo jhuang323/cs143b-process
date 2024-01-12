@@ -202,13 +202,123 @@ class Manager:
         #call scheduler at end
         self.scheduler()
 
+    def _isChild(self,atarprocid: int) -> bool:
+        '''checks if a proc index is a child of current'''
+
+        Theproc = self.PCB[atarprocid]
+
+        while Theproc.getparent() is not None:
+            
+            if Theproc.getparent() == self.currentprocessindex:
+                return True
+            
+            Theproc = self.PCB[Theproc.getparent()]
+
+        return False
+    
+
+    def _recurdestroy(self,aprocindx: int):
+
+        ThecurrentProc = self.PCB[aprocindx]
+
+        ChildrenList = ThecurrentProc.getchildren()
+
+        if len(ChildrenList) > 0:
+            for achildindx in ChildrenList:
+                self._recurdestroy(achildindx)
+
+        #destroy
+                
+        
+        
+        #remove from parent list
+        Theparent = self.PCB[self.PCB[aprocindx].getparent()]
+
+        Theparent.removechild(aprocindx)
+
+        #remove from waiting or RL
+        if ThecurrentProc.getprocstate() == 0:
+            #remove from ready list
+
+            tempProcPriority = ThecurrentProc.getpriority()
+
+            #removing from ready list
+            match tempProcPriority:
+                case 2:
+                    self.ReadyList2.remove(aprocindx)
+                case 1:
+                    self.ReadyList1.remove(aprocindx)
+                case 0:
+                    self.ReadyList0.remove(aprocindx)
+
+        else:
+            #remove from wait list 
+
+            for aResourceObj in self.RCB:
+                aResourceObj.removefromwaitinglist(aprocindx)
+
+        #release all resource of j
+        TheResourceList = ThecurrentProc.getresourcelist()
+
+        for rind,kamt in enumerate(TheResourceList):
+            print(f"freeing {rind} {kamt}")
+
+            CurProcess = ThecurrentProc
+
+            #need to modify
+            if CurProcess.checkholdingresource(rind,kamt) is not True:
+                raise "Error cannot release not hold resource2"
+            
+            CurProcess.removeresource(rind,kamt)
+
+            ThetuplesReady = self.RCB[rind].processrelease(kamt)
+
+            print(f"the tups ready {ThetuplesReady}")
+
+            #interate over the list
+            for atupready in ThetuplesReady:
+                print(f"atuuup {atupready}")
+                temptarproc = self.PCB[atupready[0]]
+
+                temptarproc.addresource(rind,atupready[1])
+
+                #set state ready
+                temptarproc.setstate(0)
+
+                #insert into ready list
+                tempProcPriority = temptarproc.getpriority()
+
+                match tempProcPriority:
+                    case 2:
+                        self.ReadyList2.append(atupready[0])
+                    case 1:
+                        self.ReadyList1.append(atupready[0])
+                    case 0:
+                        self.ReadyList0.append(atupready[0])
+
+        
+        #free pcb of J
+        self.PCB[aprocindx] = None
+
+
+
+
 
 
     def destroy(self,aprocindx:int):
         '''destroy processes'''
 
         #need to check if given proc index is child of currentprocess or equal
-        pass
+        if not self._isChild(aprocindx) and aprocindx != self.currentprocessindex:
+            raise "Error proc is not it self or a child"
+
+
+        self._recurdestroy(aprocindx)
+
+        #call scheduler
+        self.scheduler()
+        
+
 
 
             

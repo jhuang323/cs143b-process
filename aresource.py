@@ -58,6 +58,12 @@ class Resource:
             self.waitlist.remove(atuple)
 
         return TheRetList
+    
+    def removefromwaitinglist(self,aprocindx: int):
+        FilteredWaitingList = [(val, key) for (val, key) in self.waitlist if val != aprocindx]
+        print(f"new filter wait list {FilteredWaitingList}")
+
+        self.waitlist = FilteredWaitingList
 
 
 

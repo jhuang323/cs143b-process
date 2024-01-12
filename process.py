@@ -12,8 +12,20 @@ class Process:
         self.resource = [0] * 4
         self.priority = apriority
 
+    def getparent(self):
+        return self.parent
+    
+    def getchildren(self):
+        return self.children
+
     def getpriority(self):
         return self.priority
+    
+    def getprocstate(self):
+        return self.state
+    
+    def getresourcelist(self):
+        return self.resource
 
     def setstate(self,agivstate:int):
         self.state = agivstate
