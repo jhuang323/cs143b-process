@@ -3,9 +3,15 @@ def mymain():
     print("This is a test")
 
     while(True):
-        userin = input()
+        try:
+            userin = input()
 
-        print(f"echoing: {userin}")
+            print(f"echoing: {userin}")
+        except EOFError:
+            print("exiting")
+            exit()
+        except KeyboardInterrupt:
+            exit()
 
 
 
