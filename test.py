@@ -23,9 +23,19 @@ def main():
     print(Themanager)
 
     Themanager.create(1)
-    Themanager.create(2)
     Themanager.create(1)
-    Themanager.create(2)
+    # Themanager.create(1)
+    # Themanager.create(2)
+
+    Themanager.request(0,1)
+
+    Themanager.timeout()
+
+    Themanager.request(1,1)
+
+    Themanager.request(0,1)
+
+    Themanager.request(1,1)
 
     
 

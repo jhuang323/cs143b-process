@@ -3,12 +3,17 @@
 
 class Process:
     def __init__(self,aparent: int, apriority: int):
-        #0 ready 1 running 2 blocked
+        #0 ready 1 blocked running is implicit head of ready list at top one
+        #which ever proc is at the begining of top most priority is running
+        #even though the state may say 0 (ready)
         self.state = 0
         self.parent = aparent
         self.children = list()
         self.resource = [0] * 4
         self.priority = apriority
+
+    def getpriority(self):
+        return self.priority
 
     def setstate(self,agivstate:int):
         self.state = agivstate
@@ -25,8 +30,15 @@ class Process:
     def addresource(self,resid: int,resamt: int):
         self.resource[resid] += resamt 
 
-    def removeresource(self,resid: int,resamt: int):
-        self.resource[resid] -= resamt 
+    def checkholdingresource(self,resid:int) -> bool:
+        if self.resource[resid] > 0:
+            return True
+        return False
+
+    def removeresource(self,resid: int) -> int:
+        tempresourcerel = self.resource[resid]
+        self.resource[resid] = 0 
+        return tempresourcerel
 
 
     def setstate(self,astate:int):

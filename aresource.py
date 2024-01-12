@@ -7,6 +7,8 @@ class Resource:
         self.state = initinventory
         self.waitlist = list()
 
+    
+
     # add to wait list
     def processrequest(self,aprocindex: int, reqamt: int) -> bool:
         #error checks 
@@ -18,6 +20,8 @@ class Resource:
         else:
             #add to wait list
             self.waitlist.append((aprocindex,reqamt))
+
+        return False
 
     def processrelease(self,releaseamt: int):
         self.state += releaseamt

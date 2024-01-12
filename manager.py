@@ -16,6 +16,7 @@ class Manager:
         self.ReadyList2 = deque()
         self.ReadyList1 = deque()
         self.ReadyList0 = deque()
+        #this is the state of the process that is selected to run implicit head of ready list
         self.currentprocessindex = 0
 
     
@@ -31,8 +32,8 @@ class Manager:
         #set current proc as 0
         self.currentprocessindex = 0
 
-        #set 0 as running
-        self.PCB[0].setstate(1)
+        # #set 0 as running
+        # self.PCB[0].setstate(1)
         
 
         #add to ready list
@@ -65,11 +66,7 @@ class Manager:
             #perf context switch
             print("perf context switch")
 
-            #set to ready
-            self.PCB[self.currentprocessindex].setstate(0)
-
-            #change target to running
-            self.PCB[HighestProcessIndex].setstate(1)
+            
 
             self.currentprocessindex = HighestProcessIndex
 
@@ -110,6 +107,85 @@ class Manager:
 
         #call scheduler
         self.scheduler()
+
+
+    def request(self,rind: int, kamt: int):
+        '''request the resources'''
+
+        #perform errorchecking on whether resource exceed capacity and current has
+
+        #try to acquire
+        CurprocIndex = self.currentprocessindex
+        CurrentProc = self.PCB[CurprocIndex]
+
+        if self.RCB[rind].processrequest(self.currentprocessindex,kamt) is True:
+            CurrentProc.addresource(rind,kamt)
+        else:
+            #fail to acquire
+            #state block
+            CurrentProc.setstate(1)
+            #remove from ready list
+            tempCurProcRLInd = CurrentProc.getpriority()
+
+            match tempCurProcRLInd:
+                case 2:
+                    self.ReadyList2.remove(CurprocIndex)
+                case 1:
+                    self.ReadyList1.remove(CurprocIndex)
+                case 0:
+                    self.ReadyList0.remove(CurprocIndex)
+
+            print(f"process {CurprocIndex} blocked")
+
+            self.scheduler()
+
+
+    def timeout(self):
+        '''simulates hardware interrupt'''
+
+        CurrentProcess = self.PCB[self.currentprocessindex]
+        tempcurProcInd = CurrentProcess.getpriority()
+
+        tempstorePopped = -10
+
+        match tempcurProcInd:
+                case 2:
+                    tempstorePopped = self.ReadyList2.popleft()
+                    self.ReadyList2.append(tempstorePopped)
+                case 1:
+                    tempstorePopped = self.ReadyList1.popleft()
+                    self.ReadyList1.append(tempstorePopped)
+                case 0:
+                    tempstorePopped = self.ReadyList0.popleft()
+                    self.ReadyList0.append(tempstorePopped)
+
+        self.scheduler()
+
+        print("timeout")
+
+
+    def release(self,rind: int):
+        #error check if rind exist, if current proc actually hold resource
+
+        CurProcess = self.PCB[self.currentprocessindex]
+
+        if CurProcess.checkholdingresource(rind) is not True:
+            raise "Error cannot release not hold resource"
+        
+        tempStoreresReleased = CurProcess.removeresource()
+
+
+    def destroy(self,aprocindx:int):
+        '''destroy processes'''
+
+        #need to check if given proc index is child of currentprocess or equal
+        pass
+
+
+            
+            
+
+
 
 
 
