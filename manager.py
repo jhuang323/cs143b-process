@@ -11,7 +11,7 @@ MAXPROCESSNUM = 7
 
 class Manager:
     def __init__(self) -> None:
-        self.PCB = [None] * 5
+        self.PCB = [None] * 7
         self.RCB = [None] * 4
         self.ReadyList2 = deque()
         self.ReadyList1 = deque()
@@ -172,7 +172,35 @@ class Manager:
         if CurProcess.checkholdingresource(rind) is not True:
             raise "Error cannot release not hold resource"
         
-        tempStoreresReleased = CurProcess.removeresource()
+        tempStoreresReleased = CurProcess.removeresource(rind)
+
+        ThetuplesReady = self.RCB[rind].processrelease(tempStoreresReleased)
+
+        print(f"the tups ready {ThetuplesReady}")
+
+        #interate over the list
+        for atupready in ThetuplesReady:
+            temptarproc = self.PCB[atupready[0]]
+
+            temptarproc.addresource(rind,atupready[1])
+
+            #set state ready
+            temptarproc.setstate(0)
+
+            #insert into ready list
+            tempProcPriority = temptarproc.getpriority()
+
+            match tempProcPriority:
+                case 2:
+                    self.ReadyList2.append(atupready[0])
+                case 1:
+                    self.ReadyList1.append(atupready[0])
+                case 0:
+                    self.ReadyList0.append(atupready[0])
+        
+        #call scheduler at end
+        self.scheduler()
+
 
 
     def destroy(self,aprocindx:int):
