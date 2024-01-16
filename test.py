@@ -26,21 +26,23 @@ def main():
 
     Themanager.create(1)
     Themanager.create(1)
+    Themanager.create(1)
+    Themanager.create(3)
 
-    Themanager.request(0,1)
+    # Themanager.request(0,1)
 
     
 
-    Themanager.timeout()
+    # Themanager.timeout()
 
-    Themanager.request(1,1)
-    Themanager.request(0,1)
-    Themanager.request(1,1)
+    # Themanager.request(1,1)
+    # Themanager.request(0,1)
+    # Themanager.request(1,1)
 
-    Themanager.destroy(1)
+    # Themanager.destroy(1)
 
 
-    Themanager.timeout()
+    # Themanager.timeout()
 
     
 

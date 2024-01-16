@@ -7,6 +7,12 @@ class Resource:
         self.state = initinventory
         self.waitlist = list()
 
+    def getstate(self):
+        return self.state
+    
+    def getinventory(self):
+        return self.inventory
+
     
 
     # add to wait list
@@ -38,12 +44,12 @@ class Resource:
             except StopIteration:
                 break
 
-            print(f"iterating over next: {ThenextinWL}")
+            # print(f"iterating over next: {ThenextinWL}")
 
             TheProcIndex = ThenextinWL[0]
             ThekAmt = ThenextinWL[1]
 
-            print(f"the procind: {TheProcIndex}")
+            # print(f"the procind: {TheProcIndex}")
 
             if self.state >= ThekAmt:
                 self.state -= ThekAmt
@@ -61,7 +67,7 @@ class Resource:
     
     def removefromwaitinglist(self,aprocindx: int):
         FilteredWaitingList = [(val, key) for (val, key) in self.waitlist if val != aprocindx]
-        print(f"new filter wait list {FilteredWaitingList}")
+        # print(f"new filter wait list {FilteredWaitingList}")
 
         self.waitlist = FilteredWaitingList
 

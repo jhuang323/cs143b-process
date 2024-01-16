@@ -1,0 +1,144 @@
+in
+cr 1
+cr 1
+cr 1
+to
+to
+rq 3 1
+to
+rq 3 2
+to
+to
+rl 3 2
+
+in
+cr 1
+cr 2
+cr 2
+cr 1
+rq 1 1
+to
+rq 2 1
+rq 1 1
+rq 2 2
+de 2
+to
+
+in
+cr 2
+cr 1
+cr 1
+cr 1
+cr 1
+cr 1
+cr 1
+cr 1
+cr 1
+cr 1
+cr 1
+cr 1
+cr 1
+cr 1
+cr 1
+cr 1
+
+in
+cr 1
+cr 1
+to
+de 1
+
+in
+cr 1
+cr 1
+rq 4 1
+
+in
+cr 1
+cr 2
+rq 3 3
+rq 3 1
+
+in
+cr 1
+cr 1
+rq 3 3
+to
+rq 3 1
+de 1
+
+in
+cr 1
+rq 3 3
+cr 2
+rq 3 1
+cr 2
+rq 3 1
+cr 2
+rq 3 1
+de 1
+
+in
+cr 1
+cr 1
+to
+rq 3 3
+to
+cr 2
+rq 3 1
+cr 2
+rq 3 1
+cr 2
+rq 3 1
+de 2
+
+in
+cr 1
+rq 0 1
+cr 2
+rq 0 1
+rl 0 1
+
+in
+cr 1
+cr 1
+cr 1
+rq 2 1
+cr 2
+rq 2 2
+rl 2 1
+de 1
+
+in
+cr 1
+cr 1
+cr 1
+rq 2 1
+cr 2
+rq 2 2
+rl 2 1
+de 4
+de 1
+
+in
+rq 1 1
+rq 4 1
+rl 1 1
+de 0
+
+in
+cr 1
+cr 1
+rq 3 3
+cr 2
+cr 2
+to
+rq 3 2
+rq 3 1
+to
+rq 3 3
+rl 3 3
+to
+de 4
+de 3
+to
