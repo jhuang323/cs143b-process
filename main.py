@@ -118,7 +118,7 @@ def mymain():
             except Exception as e:
                 # print(e)
                 FirstIn = False
-                print(f"-1",end='')
+                print(f"-1 ",end='')
                 
 
             
