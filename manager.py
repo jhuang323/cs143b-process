@@ -140,6 +140,10 @@ class Manager:
         if rind < 0 or rind > 3:
             raise "Error resource index out of bound"
         
+        #check kamt
+        if kamt < 0 or kamt > 3:
+            raise "Error kamt is out of bounds"
+        
         #check if proc 0 is requesting
         if self.currentprocessindex == 0:
             raise "Error proc 0 cannot req"
@@ -207,6 +211,10 @@ class Manager:
         #check if request if between 0-3
         if rind < 0 or rind > 3:
             raise "Error release resource index out of bound"
+        
+        #check kamt
+        if kamt < 0 or kamt > 3:
+            raise "Error kamt is out of bounds release"
         
 
         #check if 0 is release

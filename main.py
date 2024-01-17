@@ -104,12 +104,12 @@ def mymain():
                     if FirstTwoChar == "in":
                         if FirstIn:
                             FirstIn = False
-                            print(f"{Themanager.getcurrentProc()}",end="")
+                            print(f"{Themanager.getcurrentProc()} ",end="")
                         else:
-                            print(f"\n{Themanager.getcurrentProc()}",end="")
+                            print(f"\n{Themanager.getcurrentProc()} ",end="")
 
                     else:
-                        print(f" {Themanager.getcurrentProc()}",end="")
+                        print(f"{Themanager.getcurrentProc()} ",end="")
 
                 # print(Themanager)
                 
@@ -118,7 +118,7 @@ def mymain():
             except Exception as e:
                 # print(e)
                 FirstIn = False
-                print(f" -1",end='')
+                print(f"-1",end='')
                 
 
             
