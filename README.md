@@ -11,5 +11,21 @@ Note: No compilation is necessary for python
 2. main.py is the shell. To run you must use the redirection operator < to redirect in an input file to stdin and > to redirect stdout to an output file
 
 An example of running the program:
-`python main.py <in.txt >out.txt`
+```
+python main.py <in.txt >out.txt
+```
 Assuming in.txt contains valid commands according to specifications it will write the output to out.txt
+
+## Structure of Program
+- main.py
+
+The shell of the program takes in commands from stdin and outputs the output to stdout after each command
+- manager.py
+
+The Process and Resource manager. This class is responsible for implementing all the functions such as creat,delete,request,delete,timeout,etc. It is used to manager process and resources using a 3 level ready list
+- aresource.py
+
+Defines the resource class with all appropiate instance variables and methods to manage a resource.
+- process.py
+
+Defines the process class with all appropiate instance variables and methods to manager a process.
