@@ -12,6 +12,9 @@ class Resource:
     
     def getinventory(self):
         return self.inventory
+    
+    def iswaitlistempty(self):
+        return len(self.waitlist) == 0
 
     
 
@@ -19,7 +22,7 @@ class Resource:
     def processrequest(self,aresrceindex: int, reqamt: int) -> bool:
         #error checks 
 
-        if self.state >= reqamt:
+        if self.state >= reqamt and len(self.waitlist) == 0:
             self.state -= reqamt
             return True
             

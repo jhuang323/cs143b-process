@@ -158,6 +158,8 @@ class Manager:
         #check request can be satisfy according to error check  numheld + request
         if CurrentProc.getresourcelist()[rind] + kamt > self.RCB[rind].getinventory():
             raise "Error req and hold exceed inventory"
+        
+        print(f"is waitlist empty {self.RCB[rind].iswaitlistempty()}")
 
         if self.RCB[rind].processrequest(self.currentprocessindex,kamt) is True:
             CurrentProc.addresource(rind,kamt)

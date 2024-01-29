@@ -111,7 +111,7 @@ def mymain():
                     else:
                         print(f"{Themanager.getcurrentProc()} ",end="")
 
-                # print(Themanager)
+                print(Themanager)
                 
 
                 
