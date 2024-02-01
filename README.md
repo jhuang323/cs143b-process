@@ -15,6 +15,7 @@ An example of running the program:
 python main.py <in.txt >out.txt
 ```
 Assuming in.txt contains valid commands according to specifications it will write the output to out.txt
+Also the input file (in.txt) must be in the same directory as main.py
 
 ## Structure of Program
 - main.py
