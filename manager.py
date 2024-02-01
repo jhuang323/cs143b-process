@@ -270,6 +270,11 @@ class Manager:
 
         Theproc = self.PCB[atarprocid]
 
+        #check if theproc is none
+
+        if Theproc is None:
+            return False
+
         while Theproc.getparent() is not None:
             
             if Theproc.getparent() == self.currentprocessindex:
