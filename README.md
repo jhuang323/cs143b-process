@@ -6,7 +6,7 @@ Note: This project is written entirely in python on OpenLab machines. It is reco
 ### Steps to Setup/Run
 1. Extract the zip file that was submitted to canvas by huangjk2@uci.edu (ID: 67387111) inside there should be the source code for Project 1
 
-Note: No compilation is necessary for python
+Note: No compilation is necessary for python, this assumes that main.py is in your current working directory
 - Must use redirection operators ("<",">") to redirect in an input file and to write to an output file
 2. main.py is the shell. To run you must use the redirection operator < to redirect in an input file to stdin and > to redirect stdout to an output file
 
