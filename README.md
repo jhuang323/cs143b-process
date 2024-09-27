@@ -2,6 +2,7 @@
 
 ## Setup
 Note: This project is written entirely in python on OpenLab machines. It is recommended to run this project on the UCI Openlab machines.
+This project aims to simulate the process and resource manager of the operating system. It aims to show a summary of the resources that are used.
 
 ### Steps to Setup/Run
 1. Extract the zip file that was submitted to canvas by huangjk2@uci.edu (ID: 67387111) inside there should be the source code for Project 1
